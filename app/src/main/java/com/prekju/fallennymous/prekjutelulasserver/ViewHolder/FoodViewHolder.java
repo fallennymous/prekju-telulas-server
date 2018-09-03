@@ -17,16 +17,16 @@ import com.prekju.fallennymous.prekjutelulasserver.R;
 public class FoodViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener,
         View.OnCreateContextMenuListener{
-    public TextView txtFoodName;
-    public ImageView imageFood;
+    public TextView food_name;
+    public ImageView food_image;
 
     private ItemClickListener itemClickListener;
 
     public FoodViewHolder(View itemView) {
         super(itemView);
 
-        txtFoodName = itemView.findViewById(R.id.food_name);
-        imageFood = itemView.findViewById(R.id.food_image);
+        food_name = itemView.findViewById(R.id.food_name);
+        food_image = itemView.findViewById(R.id.food_image);
 
         itemView.setOnClickListener(this);
         itemView.setOnCreateContextMenuListener(this);

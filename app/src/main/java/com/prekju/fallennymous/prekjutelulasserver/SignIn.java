@@ -31,8 +31,8 @@ public class SignIn extends AppCompatActivity {
     @BindView(R.id.btnSignIn)
     FButton btnSignIn;
 
-    FirebaseDatabase db = null;
-    DatabaseReference users = null;
+    FirebaseDatabase db;
+    DatabaseReference users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +70,18 @@ public class SignIn extends AppCompatActivity {
         mDialog.setMessage("Tunggu Sebentar");
         mDialog.show();
 
+
+        final String localPhone = phone;
+        final String LocalPassword = password;
         users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Check if user is exits
-                if(dataSnapshot.child(phone).exists()) {
+                if(dataSnapshot.child(localPhone).exists()) {
                     mDialog.dismiss();
                     // get user and set phone
                     User user = dataSnapshot.child(phone).getValue(User.class);
-                    user.setPhone(phone);
+                    user.setPhone(localPhone);
                     // check user is staff
                     if(Boolean.parseBoolean(user.getIsStaff())) {
                         // check password

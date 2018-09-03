@@ -34,7 +34,7 @@
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/btnSelect"
-                android:text="PILIH GAMABAR"
+                android:text="PILIH GAMBAR"
                 android:textColor="@android:color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="8dp"

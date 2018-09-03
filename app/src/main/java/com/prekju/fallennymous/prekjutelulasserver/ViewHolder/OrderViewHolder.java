@@ -3,32 +3,31 @@ package com.prekju.fallennymous.prekjutelulasserver.ViewHolder;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.prekju.fallennymous.prekjutelulasserver.Common.Common;
 import com.prekju.fallennymous.prekjutelulasserver.Interface.ItemClickListener;
 import com.prekju.fallennymous.prekjutelulasserver.R;
 
 /**
- * Created by fallennymous on 14/08/2018.
+ * Created by fallennymous on 02/09/2018.
  */
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
-    public TextView txtMenuName;
-    public ImageView imageMenu;
+public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
+
+    public TextView txtOrderId, txtOrderStatus, txtOrderPhone, txtOrAddress;
 
     private ItemClickListener itemClickListener;
 
-    public MenuViewHolder(View itemView) {
+    public OrderViewHolder(View itemView) {
         super(itemView);
 
-        txtMenuName = itemView.findViewById(R.id.menu_name);
-        imageMenu = itemView.findViewById(R.id.menu_image);
+        txtOrderId = itemView.findViewById(R.id.order_id);
+        txtOrderStatus = itemView.findViewById(R.id.order_status);
+        txtOrderPhone = itemView.findViewById(R.id.order_phone);
+        txtOrAddress = itemView.findViewById(R.id.order_address);
 
-        itemView.setOnCreateContextMenuListener(this);
         itemView.setOnClickListener(this);
-
+        itemView.setOnCreateContextMenuListener(this);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -42,10 +41,11 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-        contextMenu.setHeaderTitle("Pilih");
+        contextMenu.setHeaderTitle("pilih");
 
-        contextMenu.add(0, 0, getAdapterPosition(), Common.UPDATE);
-        contextMenu.add(0, 1, getAdapterPosition(), Common.DELETE);
+        contextMenu.add(0,0,getAdapterPosition(),"Update");
+        contextMenu.add(0,1,getAdapterPosition(),"Delete");
+
     }
 }
 

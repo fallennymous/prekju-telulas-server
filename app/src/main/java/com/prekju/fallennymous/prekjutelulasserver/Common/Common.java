@@ -15,6 +15,15 @@ import com.prekju.fallennymous.prekjutelulasserver.Model.User;
 
         // Request to upload image
         public static final int PICK_IMAGE_REQUEST = 71;
+
+        public static String convertCodeStatus(String code){
+            if (code.equals("0"))
+                return "Ditempat";
+            else if (code.equals("1"))
+                return "Dalam Perjalanan";
+            else
+                return "Dikirim";
+        }
     }
 
 

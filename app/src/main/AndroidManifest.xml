@@ -19,8 +19,7 @@
         <activity android:name=".SignIn" />
         <activity android:name=".Home" />
         <activity android:name=".FoodList" />
-
+        <activity android:name=".OrderStatus" />
     </application>
-
 
 </manifest>

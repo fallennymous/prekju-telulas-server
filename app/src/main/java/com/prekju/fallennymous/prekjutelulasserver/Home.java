@@ -36,6 +36,7 @@ import com.google.firebase.storage.UploadTask;
 import com.prekju.fallennymous.prekjutelulasserver.Common.Common;
 import com.prekju.fallennymous.prekjutelulasserver.Interface.ItemClickListener;
 import com.prekju.fallennymous.prekjutelulasserver.Model.Category;
+import com.prekju.fallennymous.prekjutelulasserver.Model.Order;
 import com.prekju.fallennymous.prekjutelulasserver.ViewHolder.MenuViewHolder;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.squareup.picasso.Picasso;
@@ -61,23 +62,23 @@ public class Home extends AppCompatActivity
     TextView txtFullName;
 
     // Firebase
-    FirebaseDatabase database = null;
-    DatabaseReference categories = null;
-    FirebaseStorage storage = null;
-    StorageReference storageReference = null;
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter = null;
+    FirebaseDatabase database;
+    DatabaseReference categories;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     // View
-    RecyclerView.LayoutManager mLayoutManager = null;
+    RecyclerView.LayoutManager mLayoutManager;
 
     // New category
-    Category newCategory = null;
+    Category newCategory;
 
     // Uri for saving image
-    Uri saveUri = null;
+    Uri saveUri;
 
     // view to display snack bar
-    DrawerLayout drawer = null;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,7 +250,7 @@ public class Home extends AppCompatActivity
                 && data != null && data.getData() != null) {
             // get Uri from image selected
             saveUri = data.getData();
-            btnSelect.setText("pilih gambar");
+            btnSelect.setText("Gambar Terpilih");
         }
     }
 
@@ -334,6 +335,11 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if(id == R.id.nav_orders){
+            Intent orders = new Intent(Home.this, OrderStatus.class);
+            startActivity(orders);
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -369,9 +375,8 @@ public class Home extends AppCompatActivity
      * @param item
      */
     private void showUpdateDialog(final String key, final Category item) {
-        // set title and message
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Home.this);
-        alertDialog.setTitle("Update Category");
+        alertDialog.setTitle("update kategori");
         alertDialog.setMessage("Harap isi informasi lengkap");
 
         // inflating layout
@@ -382,12 +387,8 @@ public class Home extends AppCompatActivity
         btnUpload = add_menu_layout.findViewById(R.id.btnUpload);
         btnSelect = add_menu_layout.findViewById(R.id.btnSelect);
 
-        // set default name
+        // set defauly name
         edtName.setText(item.getName());
-
-        // set layout and icon for dialog
-        alertDialog.setView(add_menu_layout);
-        alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp);
 
         // event for button
         btnSelect.setOnClickListener(new View.OnClickListener() {
@@ -405,17 +406,18 @@ public class Home extends AppCompatActivity
         });
 
         // set button
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
 
-                // Update information on Firebase
+                //update informatiom
                 item.setName(edtName.getText().toString());
                 categories.child(key).setValue(item);
+
             }
         });
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
