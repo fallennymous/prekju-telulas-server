@@ -338,6 +338,10 @@ public class Home extends AppCompatActivity
         if(id == R.id.nav_orders){
             Intent orders = new Intent(Home.this, OrderStatus.class);
             startActivity(orders);
+        } else if(id==R.id.nav_logout) {
+            Intent signIn = new Intent(Home.this,SignIn.class);
+            signIn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(signIn);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

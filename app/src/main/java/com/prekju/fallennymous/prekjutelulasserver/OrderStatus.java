@@ -99,7 +99,7 @@ public class OrderStatus extends AppCompatActivity {
         final View view = inflater.inflate(R.layout.update_order_layout,null);
 
         spinner = (MaterialSpinner)view.findViewById(R.id.statusSpinner);
-        spinner.setItems("Ditempat","Dalam Perjalanan","Dikirim");
+        spinner.setItems("Pesanan diproses","Pesanan dalam perjalanan","pesanan diterima");
 
         alertDialog.setView(view);
 

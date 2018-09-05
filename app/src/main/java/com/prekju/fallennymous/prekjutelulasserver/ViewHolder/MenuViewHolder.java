@@ -44,7 +44,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
         contextMenu.setHeaderTitle("Pilih");
 
-        contextMenu.add(0, 0, getAdapterPosition(), Common.UPDATE);
+       // contextMenu.add(0, 0, getAdapterPosition(), Common.UPDATE);
         contextMenu.add(0, 1, getAdapterPosition(), Common.DELETE);
     }
 }

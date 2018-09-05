@@ -18,11 +18,11 @@ import com.prekju.fallennymous.prekjutelulasserver.Model.User;
 
         public static String convertCodeStatus(String code){
             if (code.equals("0"))
-                return "Ditempat";
+                return "Pesanan diproses";
             else if (code.equals("1"))
-                return "Dalam Perjalanan";
+                return "Pesanan dalam perjalanan ";
             else
-                return "Dikirim";
+                return "pesanan diterima";
         }
     }
 
